@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.primarybg {
+  background-color: #04ade6;
+}
+
+.btn {
+  padding: 1rem 3rem;
+  border-radius: 0;
+  border: 0;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background-color: #04ade6;
+  color: white;
+}
+.btn-secondary {
+  background-color: white;
+  color: #04ade6;
+}
+
+/* .splide {
+  display: block;
+  visibility: visible;
+  width: 100%;
+} */
+
+/* Hero About */
+
+.heroabout {
+  font-size: 1.5rem;
+}
+
+/* Hero About */

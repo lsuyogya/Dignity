@@ -1,0 +1,93 @@
+:root {
+  --primary-color: #04ade6;
+  --dark-color: #1d1d1d;
+  --text-dark-color: #2a2a2a;
+  --primary-light-color: #ebfaff;
+  --overlay-color: #04ade680;
+  --overlay-light-color: #ebfaffe5;
+  --light-color: #fff;
+}
+
+.mainGrid {
+  display: grid;
+  grid-template-columns:
+    [fullWidth-start]1rem [breakout-start] 1fr [content-start] min(
+      100%,
+      calc(1325rem / 16)
+    )
+    [content-end] 1fr [breakout-end] 1rem [fullWidth-end];
+}
+
+.fullWidth {
+  grid-column: fullWidth;
+}
+.breakout {
+  grid-column: breakout;
+}
+.topcontactwrapper {
+  background-color: var(--dark-color);
+  color: var(--primary-light-color);
+  > div {
+    display: flex;
+    justify-content: space-between;
+  }
+  .left {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .socials {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+}
+
+.flex {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.heroSplide .splide__slide {
+  height: auto;
+  width: 100%;
+  aspect-ratio: 2.5;
+  position: relative;
+}
+.heroContent {
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-end: 0;
+  color: var(--text-dark-color);
+  padding: 3rem;
+  background-color: var(--overlay-light-color);
+  display: grid;
+  gap: 1rem;
+  button {
+    background: var(--primary-color);
+    color: var(--light-color);
+    padding: 0.5rem 3rem 0.5rem 2rem;
+    border: none;
+    width: fit-content;
+  }
+  .prog_bar {
+    --_progBarHeight: 2px;
+    --_progBarAfterHeight: 3px;
+    --progress: 0%;
+
+    height: var(--_progBarHeight);
+    width: 100%;
+    background-color: color-mix(in srgb, var(--primary-color), white 60%);
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      height: var(--_progBarAfterHeight);
+      margin-top: calc(var(--_progBarHeight) - var(--_progBarAfterHeight));
+      background-color: var(--primary-color);
+      width: var(--progress);
+    }
+  }
+}
