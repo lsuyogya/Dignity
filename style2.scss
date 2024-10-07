@@ -1,3 +1,5 @@
+@import 'fonts';
+
 :root {
   --primary-color: #04ade6;
   --dark-color: #1d1d1d;
@@ -6,16 +8,20 @@
   --overlay-color: #04ade680;
   --overlay-light-color: #ebfaffe5;
   --light-color: #fff;
+  --section-gap: clamp(2rem, 10vw, 5rem);
+  font-family: 'Istok Web';
 }
 
 .mainGrid {
+  --inline-gap: 1rem;
   display: grid;
   grid-template-columns:
-    [fullWidth-start]1rem [breakout-start] 1fr [content-start] min(
-      100%,
+    [fullWidth-start] var(--inline-gap)
+    [breakout-start] 1fr [content-start] min(
+      calc(100% - var(--inline-gap) * 2),
       calc(1325rem / 16)
     )
-    [content-end] 1fr [breakout-end] 1rem [fullWidth-end];
+    [content-end] 1fr [breakout-end] var(--inline-gap) [fullWidth-end];
 }
 
 .fullWidth {
@@ -24,9 +30,45 @@
 .breakout {
   grid-column: breakout;
 }
+.content {
+  grid-column: content;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Kanit;
+  font-weight: 700;
+  line-height: 1;
+  color: inherit;
+}
+
+h1 {
+  font-size: clamp(calc(24rem / 16), 5vw, calc(48rem / 16));
+}
+h5 {
+  font-family: Inter;
+  font-size: clamp(calc(12rem / 16), 3vw, calc(18rem / 16));
+  font-weight: 600;
+}
+h2 {
+  font-family: Kanti;
+  font-size: clamp(calc(20rem / 16), 5vw, calc(40rem / 16));
+}
+p {
+  font-size: clamp(calc(14rem / 16), 3vw, calc(16rem / 16));
+}
+p.large {
+  font-size: clamp(calc(16rem / 16), 3vw, calc(24rem / 16));
+  line-height: 1.33;
+}
 .topcontactwrapper {
   background-color: var(--dark-color);
   color: var(--primary-light-color);
+
   > div {
     display: flex;
     justify-content: space-between;
@@ -50,6 +92,15 @@
   gap: 0.25rem;
 }
 
+button,
+.btn {
+  padding: 1rem 3rem 1rem 2rem;
+  font-weight: 600;
+  font-size: clamp(calc(14rem / 16), 2vw, calc(16rem / 16));
+  border: none;
+  width: fit-content;
+}
+
 .heroSplide .splide__slide {
   height: auto;
   width: 100%;
@@ -57,6 +108,7 @@
   position: relative;
 }
 .heroContent {
+  visibility: hidden;
   position: absolute;
   inset-inline-start: 0;
   inset-block-end: 0;
@@ -65,12 +117,20 @@
   background-color: var(--overlay-light-color);
   display: grid;
   gap: 1rem;
+  transition: padding-inline 300ms ease, padding-block 300ms ease,
+    width 300ms ease;
+  width: min(100%, 700px);
+  @media (max-width: 700px) {
+    position: relative;
+    padding-inline: 1rem;
+    padding-block: 2rem;
+  }
+  &.outer {
+    visibility: visible;
+  }
   button {
     background: var(--primary-color);
     color: var(--light-color);
-    padding: 0.5rem 3rem 0.5rem 2rem;
-    border: none;
-    width: fit-content;
   }
   .prog_bar {
     --_progBarHeight: 2px;
@@ -82,12 +142,268 @@
     background-color: color-mix(in srgb, var(--primary-color), white 60%);
     position: relative;
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       height: var(--_progBarAfterHeight);
       margin-top: calc(var(--_progBarHeight) - var(--_progBarAfterHeight));
       background-color: var(--primary-color);
       width: var(--progress);
+      transition: width 0.3s ease-in;
+    }
+  }
+}
+
+h5.dash {
+  --_color: var(--primary-color);
+  --_dashWidth: calc(48rem / 16);
+  position: relative;
+  padding-inline-start: calc(var(--_dashWidth) + 1rem);
+  @media (max-width: 700px) {
+    --_dashWidth: calc(24rem / 16);
+  }
+  &.secondary {
+    --_color: var(--light-color);
+  }
+  &::before {
+    content: '';
+    background-color: var(--_color);
+    position: absolute;
+    height: 3px;
+    width: var(--_dashWidth);
+    inset-block: 0;
+    margin-block: auto;
+    inset-inline-start: 0;
+    @media (max-width: 700px) {
+      height: 2px;
+    }
+  }
+}
+
+$_arrowLineWidth: 1.3rem;
+$_arrowLineInsetInlineEnd: 1.25rem;
+$_arrowInsetInlineEnd: 1rem;
+button:has(> .arrow) {
+  --_color: var(--light-color);
+  position: relative;
+  color: var(--_color);
+  &.btn-secondary {
+    --_color: var(--primary-color);
+  }
+  .arrow {
+    &::after {
+      content: '>';
+      font-size: 1.5rem;
+      position: absolute;
+      inset-inline-end: 1rem;
+      inset-block: 0;
+      line-height: 1;
+      margin-block: auto;
+      height: fit-content;
+      font-weight: 400;
+      transition: none; // Avoid CSS transition conflicts
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      height: 2px;
+      width: 0rem; // Start with no width
+      margin-block: auto;
+      inset-inline-end: $_arrowLineInsetInlineEnd;
+      inset-block: 0;
+      background-color: var(--_color);
+      transition: none; // Avoid CSS transition conflicts
+    }
+  }
+
+  // Hover-out animation
+  &:not(:hover) {
+    .arrow {
+      &::after {
+        animation: hoverOutEffectArrow 300ms ease-in-out forwards 300ms;
+      }
+      &::before {
+        animation: hoverOutEffectLine 300ms ease-in-out forwards 0ms;
+      }
+    }
+  }
+
+  // Hover-in animation
+  &:hover {
+    .arrow {
+      &::after {
+        animation: hoverInEffectArrow 300ms ease-in-out forwards 0ms;
+      }
+      &::before {
+        animation: hoverInEffectLine 300ms ease-in-out forwards 300ms;
+      }
+    }
+  }
+}
+
+// Keyframe for hover-in arrow
+@keyframes hoverInEffectArrow {
+  from {
+    inset-inline-end: calc(
+      $_arrowLineWidth + $_arrowLineInsetInlineEnd - $_arrowInsetInlineEnd
+    );
+  }
+  to {
+    inset-inline-end: 1rem;
+  }
+}
+
+// Keyframe for hover-out arrow
+@keyframes hoverOutEffectArrow {
+  from {
+    inset-inline-end: 1rem;
+  }
+  to {
+    inset-inline-end: calc(
+      $_arrowLineWidth + $_arrowLineInsetInlineEnd - $_arrowInsetInlineEnd
+    );
+  }
+}
+
+// Keyframe for hover-in line
+@keyframes hoverInEffectLine {
+  from {
+    width: 0rem;
+  }
+  to {
+    width: $_arrowLineWidth;
+  }
+}
+
+// Keyframe for hover-out line
+@keyframes hoverOutEffectLine {
+  from {
+    width: $_arrowLineWidth;
+  }
+  to {
+    width: 0rem;
+  }
+}
+
+.heroabout {
+  display: grid;
+  padding-block: var(--section-gap);
+  row-gap: 1rem;
+  column-gap: 2rem;
+  @media (min-width: 700px) {
+    grid-template-columns: 1fr 4fr;
+  }
+  .left {
+    display: grid;
+    gap: 1rem;
+    align-items: center;
+  }
+}
+
+.primarybg {
+  background-color: var(--primary-color);
+  color: var(--light-color);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--light-color);
+}
+.btn-secondary {
+  background-color: var(--light-color);
+  color: var(--primary-color);
+}
+
+a {
+  width: max-content;
+  cursor: pointer;
+  button {
+    cursor: pointer;
+  }
+}
+
+section.whatWeDo {
+  margin-block: var(--section-gap);
+  padding-block: var(--section-gap);
+  > div > * {
+    margin-block: 1rem;
+    &:first-child {
+      margin-block-start: 0;
+    }
+    &:last-child {
+      margin-block-end: 0;
+    }
+  }
+  .imgGrid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    .grid-item {
+      position: relative;
+      border-image: fill 0
+        linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0) 64.86%,
+          rgba(0, 0, 0, 0.7) 85.33%
+        );
+      aspect-ratio: 0.75;
+      overflow: hidden;
+      .accordionEffect {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 300ms ease;
+        @media (max-width: 700px) {
+          grid-template-rows: 1fr;
+        }
+        > div {
+          overflow: hidden;
+        }
+      }
+      img {
+        width: 100%;
+        aspect-ratio: 0.75;
+        object-fit: cover;
+        z-index: -1;
+        position: relative;
+        display: block;
+        transition: scale 300ms ease;
+      }
+      &:hover {
+        .accordionEffect {
+          grid-template-rows: 1fr;
+        }
+        img {
+          scale: 1.1;
+        }
+      }
+      .txtWrapper {
+        position: absolute;
+        inset-inline: 1rem;
+        inset-block-end: 0.5rem;
+        color: white;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.5rem;
+        .titleWrapper {
+          display: flex;
+          gap: 0.5rem;
+        }
+        .number {
+          color: var(--primary-color);
+          font-weight: 700;
+          font-family: kanit;
+          font-size: clamp(calc(52rem / 16), 10vw, calc(64rem / 16));
+          line-height: 1;
+        }
+        .imgLabel {
+          font-family: Kanit;
+          font-size: clamp(calc(16rem / 16), 5vw, calc(24rem / 16));
+          font-weight: 700;
+          line-height: 1.1;
+          word-spacing: 100vmax;
+        }
+      }
     }
   }
 }

@@ -1,6 +1,7 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const heroSplide = new Splide("#heroimage-carousel", {
-    // type: "loop",
+document.addEventListener('DOMContentLoaded', () => {
+  const heroSplide = new Splide('#heroimage-carousel', {
+    type: 'loop',
+    clones: 0,
     perPage: 1,
     autoplay: true,
     interval: 3000,
@@ -10,14 +11,25 @@ document.addEventListener("DOMContentLoaded", () => {
     dots: false,
     pagination: false,
   });
-  heroSplide.on("mounted", () => {
+  heroSplide.on('mounted', () => {
     const totalSlides = heroSplide.length; // Total number of slides
-
-    heroSplide.on("active", (Slide) => {
+    const outerContent = document.querySelector('.heroContent.outer');
+    const outerProgBar = outerContent.querySelector('.prog_bar');
+    const outerHeader = outerContent.querySelector('.heading');
+    const outerLink = outerContent.querySelector('.link');
+    heroSplide.on('active', (Slide) => {
       const currentIndex = Slide.index; // Get the current slide index
       const progressPercent = ((currentIndex + 1) / totalSlides) * 100; // Calculate percentage width
-      activeBar = Slide.slide.querySelector(".prog_bar");
-      activeBar.style.setProperty("--progress", `${progressPercent}%`);
+      console.log(Slide.slide);
+      const innerContent = Slide.slide.querySelector('.heroContent');
+      const innerHeader = innerContent.querySelector('.heading');
+      const innerLink = innerContent.querySelector('.link');
+
+      outerProgBar.style.setProperty('--progress', `${progressPercent}%`);
+      outerHeader.innerText = innerHeader.textContent;
+      console.log(innerHeader);
+      outerLink.href = innerLink.href;
+      // activeBar = Slide.slide.querySelector('.prog_bar');
     });
   });
   // heroSplide.on("autoplay:playing", (rate) => {

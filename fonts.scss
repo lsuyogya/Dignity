@@ -1,0 +1,109 @@
+$font-path: './assets/fonts';
+
+/* Inter font family */
+@font-face {
+  font-family: 'Inter';
+  src: url('#{$font-path}/Inter-Italic-VariableFont.ttf') format('truetype');
+  font-style: italic;
+  font-weight: 100 900;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('#{$font-path}/Inter-VariableFont.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 100 900;
+}
+
+/* Istok Web font family */
+@font-face {
+  font-family: 'Istok Web';
+  src: url('#{$font-path}/IstokWeb-Bold.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Istok Web';
+  src: url('#{$font-path}/IstokWeb-BoldItalic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Istok Web';
+  src: url('#{$font-path}/IstokWeb-Italic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Istok Web';
+  src: url('#{$font-path}/IstokWeb-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* Kanit font family */
+@font-face {
+  font-family: 'Kanit';
+  src: url('#{$font-path}/Kanit-Black.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: 'Kanit';
+  src: url('#{$font-path}/Kanit-Bold.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Kanit';
+  src: url('#{$font-path}/Kanit-ExtraBold.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: 'Kanit';
+  src: url('#{$font-path}/Kanit-ExtraLight.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: 'Kanit';
+  src: url('#{$font-path}/Kanit-Light.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Kanit';
+  src: url('#{$font-path}/Kanit-Medium.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Kanit';
+  src: url('#{$font-path}/Kanit-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Kanit';
+  src: url('#{$font-path}/Kanit-SemiBold.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Kanit';
+  src: url('#{$font-path}/Kanit-Thin.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 100;
+}

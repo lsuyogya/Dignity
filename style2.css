@@ -1,3 +1,96 @@
+/* Inter font family */
+@font-face {
+  font-family: "Inter";
+  src: url("./assets/fonts/Inter-Italic-VariableFont.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 100 900;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("./assets/fonts/Inter-VariableFont.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 900;
+}
+/* Istok Web font family */
+@font-face {
+  font-family: "Istok Web";
+  src: url("./assets/fonts/IstokWeb-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Istok Web";
+  src: url("./assets/fonts/IstokWeb-BoldItalic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Istok Web";
+  src: url("./assets/fonts/IstokWeb-Italic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Istok Web";
+  src: url("./assets/fonts/IstokWeb-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+}
+/* Kanit font family */
+@font-face {
+  font-family: "Kanit";
+  src: url("./assets/fonts/Kanit-Black.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 900;
+}
+@font-face {
+  font-family: "Kanit";
+  src: url("./assets/fonts/Kanit-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Kanit";
+  src: url("./assets/fonts/Kanit-ExtraBold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 800;
+}
+@font-face {
+  font-family: "Kanit";
+  src: url("./assets/fonts/Kanit-ExtraLight.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 200;
+}
+@font-face {
+  font-family: "Kanit";
+  src: url("./assets/fonts/Kanit-Light.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Kanit";
+  src: url("./assets/fonts/Kanit-Medium.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Kanit";
+  src: url("./assets/fonts/Kanit-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Kanit";
+  src: url("./assets/fonts/Kanit-SemiBold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Kanit";
+  src: url("./assets/fonts/Kanit-Thin.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100;
+}
 :root {
   --primary-color: #04ade6;
   --dark-color: #1d1d1d;
@@ -6,11 +99,14 @@
   --overlay-color: #04ade680;
   --overlay-light-color: #ebfaffe5;
   --light-color: #fff;
+  --section-gap: clamp(2rem, 10vw, 5rem);
+  font-family: "Istok Web";
 }
 
 .mainGrid {
+  --inline-gap: 1rem;
   display: grid;
-  grid-template-columns: [fullWidth-start] 1rem [breakout-start] 1fr [content-start] min(100%, 82.8125rem) [content-end] 1fr [breakout-end] 1rem [fullWidth-end];
+  grid-template-columns: [fullWidth-start] var(--inline-gap) [breakout-start] 1fr [content-start] min(100% - var(--inline-gap) * 2, 82.8125rem) [content-end] 1fr [breakout-end] var(--inline-gap) [fullWidth-end];
 }
 
 .fullWidth {
@@ -19,6 +115,46 @@
 
 .breakout {
   grid-column: breakout;
+}
+
+.content {
+  grid-column: content;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Kanit;
+  font-weight: 700;
+  line-height: 1;
+  color: inherit;
+}
+
+h1 {
+  font-size: clamp(1.5rem, 5vw, 3rem);
+}
+
+h5 {
+  font-family: Inter;
+  font-size: clamp(0.75rem, 3vw, 1.125rem);
+  font-weight: 600;
+}
+
+h2 {
+  font-family: Kanti;
+  font-size: clamp(1.25rem, 5vw, 2.5rem);
+}
+
+p {
+  font-size: clamp(0.875rem, 3vw, 1rem);
+}
+
+p.large {
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  line-height: 1.33;
 }
 
 .topcontactwrapper {
@@ -47,6 +183,15 @@
   gap: 0.25rem;
 }
 
+button,
+.btn {
+  padding: 1rem 3rem 1rem 2rem;
+  font-weight: 600;
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  border: none;
+  width: fit-content;
+}
+
 .heroSplide .splide__slide {
   height: auto;
   width: 100%;
@@ -55,6 +200,7 @@
 }
 
 .heroContent {
+  visibility: hidden;
   position: absolute;
   inset-inline-start: 0;
   inset-block-end: 0;
@@ -63,13 +209,22 @@
   background-color: var(--overlay-light-color);
   display: grid;
   gap: 1rem;
+  transition: padding-inline 300ms ease, padding-block 300ms ease, width 300ms ease;
+  width: min(100%, 700px);
+}
+@media (max-width: 700px) {
+  .heroContent {
+    position: relative;
+    padding-inline: 1rem;
+    padding-block: 2rem;
+  }
+}
+.heroContent.outer {
+  visibility: visible;
 }
 .heroContent button {
   background: var(--primary-color);
   color: var(--light-color);
-  padding: 0.5rem 3rem 0.5rem 2rem;
-  border: none;
-  width: fit-content;
 }
 .heroContent .prog_bar {
   --_progBarHeight: 2px;
@@ -87,6 +242,234 @@
   margin-top: calc(var(--_progBarHeight) - var(--_progBarAfterHeight));
   background-color: var(--primary-color);
   width: var(--progress);
+  transition: width 0.3s ease-in;
+}
+
+h5.dash {
+  --_color: var(--primary-color);
+  --_dashWidth: calc(48rem / 16);
+  position: relative;
+  padding-inline-start: calc(var(--_dashWidth) + 1rem);
+}
+@media (max-width: 700px) {
+  h5.dash {
+    --_dashWidth: calc(24rem / 16);
+  }
+}
+h5.dash.secondary {
+  --_color: var(--light-color);
+}
+h5.dash::before {
+  content: "";
+  background-color: var(--_color);
+  position: absolute;
+  height: 3px;
+  width: var(--_dashWidth);
+  inset-block: 0;
+  margin-block: auto;
+  inset-inline-start: 0;
+}
+@media (max-width: 700px) {
+  h5.dash::before {
+    height: 2px;
+  }
+}
+
+button:has(> .arrow) {
+  --_color: var(--light-color);
+  position: relative;
+  color: var(--_color);
+}
+button:has(> .arrow).btn-secondary {
+  --_color: var(--primary-color);
+}
+button:has(> .arrow) .arrow::after {
+  content: ">";
+  font-size: 1.5rem;
+  position: absolute;
+  inset-inline-end: 1rem;
+  inset-block: 0;
+  line-height: 1;
+  margin-block: auto;
+  height: fit-content;
+  font-weight: 400;
+  transition: none;
+}
+button:has(> .arrow) .arrow::before {
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 0rem;
+  margin-block: auto;
+  inset-inline-end: 1.25rem;
+  inset-block: 0;
+  background-color: var(--_color);
+  transition: none;
+}
+button:has(> .arrow):not(:hover) .arrow::after {
+  animation: hoverOutEffectArrow 300ms ease-in-out forwards 300ms;
+}
+button:has(> .arrow):not(:hover) .arrow::before {
+  animation: hoverOutEffectLine 300ms ease-in-out forwards 0ms;
+}
+button:has(> .arrow):hover .arrow::after {
+  animation: hoverInEffectArrow 300ms ease-in-out forwards 0ms;
+}
+button:has(> .arrow):hover .arrow::before {
+  animation: hoverInEffectLine 300ms ease-in-out forwards 300ms;
+}
+
+@keyframes hoverInEffectArrow {
+  from {
+    inset-inline-end: 1.55rem;
+  }
+  to {
+    inset-inline-end: 1rem;
+  }
+}
+@keyframes hoverOutEffectArrow {
+  from {
+    inset-inline-end: 1rem;
+  }
+  to {
+    inset-inline-end: 1.55rem;
+  }
+}
+@keyframes hoverInEffectLine {
+  from {
+    width: 0rem;
+  }
+  to {
+    width: 1.3rem;
+  }
+}
+@keyframes hoverOutEffectLine {
+  from {
+    width: 1.3rem;
+  }
+  to {
+    width: 0rem;
+  }
+}
+.heroabout {
+  display: grid;
+  padding-block: var(--section-gap);
+  row-gap: 1rem;
+  column-gap: 2rem;
+}
+@media (min-width: 700px) {
+  .heroabout {
+    grid-template-columns: 1fr 4fr;
+  }
+}
+.heroabout .left {
+  display: grid;
+  gap: 1rem;
+  align-items: center;
+}
+
+.primarybg {
+  background-color: var(--primary-color);
+  color: var(--light-color);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--light-color);
+}
+
+.btn-secondary {
+  background-color: var(--light-color);
+  color: var(--primary-color);
+}
+
+a {
+  width: max-content;
+  cursor: pointer;
+}
+a button {
+  cursor: pointer;
+}
+
+section.whatWeDo {
+  margin-block: var(--section-gap);
+  padding-block: var(--section-gap);
+}
+section.whatWeDo > div > * {
+  margin-block: 1rem;
+}
+section.whatWeDo > div > *:first-child {
+  margin-block-start: 0;
+}
+section.whatWeDo > div > *:last-child {
+  margin-block-end: 0;
+}
+section.whatWeDo .imgGrid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+section.whatWeDo .imgGrid .grid-item {
+  position: relative;
+  border-image: fill 0 linear-gradient(180deg, rgba(0, 0, 0, 0) 64.86%, rgba(0, 0, 0, 0.7) 85.33%);
+  aspect-ratio: 0.75;
+  overflow: hidden;
+}
+section.whatWeDo .imgGrid .grid-item .accordionEffect {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 300ms ease;
+}
+@media (max-width: 700px) {
+  section.whatWeDo .imgGrid .grid-item .accordionEffect {
+    grid-template-rows: 1fr;
+  }
+}
+section.whatWeDo .imgGrid .grid-item .accordionEffect > div {
+  overflow: hidden;
+}
+section.whatWeDo .imgGrid .grid-item img {
+  width: 100%;
+  aspect-ratio: 0.75;
+  object-fit: cover;
+  z-index: -1;
+  position: relative;
+  display: block;
+  transition: scale 300ms ease;
+}
+section.whatWeDo .imgGrid .grid-item:hover .accordionEffect {
+  grid-template-rows: 1fr;
+}
+section.whatWeDo .imgGrid .grid-item:hover img {
+  scale: 1.1;
+}
+section.whatWeDo .imgGrid .grid-item .txtWrapper {
+  position: absolute;
+  inset-inline: 1rem;
+  inset-block-end: 0.5rem;
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+section.whatWeDo .imgGrid .grid-item .txtWrapper .titleWrapper {
+  display: flex;
+  gap: 0.5rem;
+}
+section.whatWeDo .imgGrid .grid-item .txtWrapper .number {
+  color: var(--primary-color);
+  font-weight: 700;
+  font-family: kanit;
+  font-size: clamp(3.25rem, 10vw, 4rem);
+  line-height: 1;
+}
+section.whatWeDo .imgGrid .grid-item .txtWrapper .imgLabel {
+  font-family: Kanit;
+  font-size: clamp(1rem, 5vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  word-spacing: 100vmax;
 }
 
 /*# sourceMappingURL=style2.css.map */
