@@ -20,14 +20,14 @@ document.addEventListener('DOMContentLoaded', () => {
     heroSplide.on('active', (Slide) => {
       const currentIndex = Slide.index; // Get the current slide index
       const progressPercent = ((currentIndex + 1) / totalSlides) * 100; // Calculate percentage width
-      console.log(Slide.slide);
+      // console.log(Slide.slide);
       const innerContent = Slide.slide.querySelector('.heroContent');
       const innerHeader = innerContent.querySelector('.heading');
       const innerLink = innerContent.querySelector('.link');
 
       outerProgBar.style.setProperty('--progress', `${progressPercent}%`);
       outerHeader.innerText = innerHeader.textContent;
-      console.log(innerHeader);
+      // console.log(innerHeader);
       outerLink.href = innerLink.href;
       // activeBar = Slide.slide.querySelector('.prog_bar');
     });
