@@ -1,4 +1,4 @@
-@import 'fonts';
+@import "fonts";
 
 :root {
   --primary-color: #04ade6;
@@ -10,7 +10,7 @@
   --overlay-light-color: #ebfaffe5;
   --light-color: #fff;
   --section-gap: clamp(2rem, 10vw, 5rem);
-  font-family: 'Istok Web';
+  font-family: "Istok Web";
   color: var(--text-dark-color);
 }
 
@@ -149,7 +149,7 @@ button,
     background-color: color-mix(in srgb, var(--primary-color), white 60%);
     position: relative;
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       height: var(--_progBarAfterHeight);
       margin-top: calc(var(--_progBarHeight) - var(--_progBarAfterHeight));
@@ -172,7 +172,7 @@ h5.dash {
     --_color: var(--light-color);
   }
   &::before {
-    content: '';
+    content: "";
     background-color: var(--_color);
     position: absolute;
     height: 3px;
@@ -198,7 +198,7 @@ button:has(> .arrow) {
   }
   .arrow {
     &::after {
-      content: '>';
+      content: ">";
       font-size: 1.5rem;
       position: absolute;
       inset-inline-end: 1rem;
@@ -211,7 +211,7 @@ button:has(> .arrow) {
     }
 
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       height: 2px;
       width: 0rem; // Start with no width
@@ -423,7 +423,7 @@ section.initiative {
   padding-block: var(--section-gap);
   color: var(--text-dark-color);
   p {
-    font-family: 'Istok Web';
+    font-family: "Istok Web";
   }
   & > div {
     display: grid;
@@ -644,16 +644,32 @@ section.blogs {
 
 footer {
   color: var(--light-color);
+  .footerLogo,
+  .footerIcon {
+    filter: brightness(0) invert(1);
+  }
   .top {
     background-color: var(--primary-color);
     padding-block: var(--section-gap);
+    > div {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 2rem;
+      .grid-item {
+        display: grid;
+        gap: 1rem;
+        grid-auto-rows: max-content;
+      }
+    }
   }
   .bot {
     background-color: var(--dark-primary-color);
     > div {
       display: flex;
       gap: 1rem;
-      justify-content: space-between;
+      flex-wrap: wrap;
+      justify-content: space-around;
     }
     ul {
       padding-inline-start: 0;
@@ -665,5 +681,57 @@ footer {
         text-underline-offset: 2px;
       }
     }
+  }
+  .menuList {
+    display: grid;
+    align-content: center;
+    align-items: center;
+    padding-inline-start: 0;
+    text-align: start;
+    list-style: none;
+    a {
+      color: inherit;
+      text-underline-offset: 2px;
+      display: flex;
+      align-items: center;
+      align-content: center;
+      &:not(:hover) {
+        text-decoration: none;
+      }
+    }
+    object:not(.noRotate) {
+      rotate: -90deg;
+      margin-top: -2px;
+    }
+    object.noRotate {
+      margin-inline-end: 1rem;
+      margin-block: 0.5rem;
+    }
+    object.scale {
+      scale: 2;
+    }
+  }
+}
+
+.newsLetter {
+  display: flex;
+  > * {
+    display: block;
+    border: none;
+    border-radius: 0;
+  }
+  input {
+    background-color: var(--overlay-light-color);
+    color: #777777;
+    font-size: calc(14rem / 16);
+    padding-inline: 1rem;
+  }
+  button {
+    background-color: var(--light-color);
+    color: var(--primary-color);
+    font-weight: 600;
+    font-family: Kanit;
+    font-size: 1rem;
+    padding-inline: 1rem;
   }
 }

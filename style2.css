@@ -716,9 +716,24 @@ section.blogs .contentWrapper .grid-item p {
 footer {
   color: var(--light-color);
 }
+footer .footerLogo,
+footer .footerIcon {
+  filter: brightness(0) invert(1);
+}
 footer .top {
   background-color: var(--primary-color);
   padding-block: var(--section-gap);
+}
+footer .top > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+}
+footer .top > div .grid-item {
+  display: grid;
+  gap: 1rem;
+  grid-auto-rows: max-content;
 }
 footer .bot {
   background-color: var(--dark-primary-color);
@@ -726,7 +741,8 @@ footer .bot {
 footer .bot > div {
   display: flex;
   gap: 1rem;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 footer .bot ul {
   padding-inline-start: 0;
@@ -737,6 +753,58 @@ footer .bot ul {
 footer .bot ul a {
   color: inherit;
   text-underline-offset: 2px;
+}
+footer .menuList {
+  display: grid;
+  align-content: center;
+  align-items: center;
+  padding-inline-start: 0;
+  text-align: start;
+  list-style: none;
+}
+footer .menuList a {
+  color: inherit;
+  text-underline-offset: 2px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+footer .menuList a:not(:hover) {
+  text-decoration: none;
+}
+footer .menuList object:not(.noRotate) {
+  rotate: -90deg;
+  margin-top: -2px;
+}
+footer .menuList object.noRotate {
+  margin-inline-end: 1rem;
+  margin-block: 0.5rem;
+}
+footer .menuList object.scale {
+  scale: 2;
+}
+
+.newsLetter {
+  display: flex;
+}
+.newsLetter > * {
+  display: block;
+  border: none;
+  border-radius: 0;
+}
+.newsLetter input {
+  background-color: var(--overlay-light-color);
+  color: #777777;
+  font-size: 0.875rem;
+  padding-inline: 1rem;
+}
+.newsLetter button {
+  background-color: var(--light-color);
+  color: var(--primary-color);
+  font-weight: 600;
+  font-family: Kanit;
+  font-size: 1rem;
+  padding-inline: 1rem;
 }
 
 /*# sourceMappingURL=style2.css.map */
