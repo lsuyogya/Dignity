@@ -93,6 +93,7 @@
 }
 :root {
   --primary-color: #04ade6;
+  --dark-primary-color: #0499cc;
   --dark-color: #1d1d1d;
   --text-dark-color: #2a2a2a;
   --primary-light-color: #ebfaff;
@@ -712,8 +713,30 @@ section.blogs .contentWrapper .grid-item p {
   }
 }
 
+footer {
+  color: var(--light-color);
+}
 footer .top {
   background-color: var(--primary-color);
+  padding-block: var(--section-gap);
+}
+footer .bot {
+  background-color: var(--dark-primary-color);
+}
+footer .bot > div {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+footer .bot ul {
+  padding-inline-start: 0;
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+footer .bot ul a {
+  color: inherit;
+  text-underline-offset: 2px;
 }
 
 /*# sourceMappingURL=style2.css.map */
