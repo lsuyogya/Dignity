@@ -123,6 +123,18 @@
   grid-column: content;
 }
 
+.content-fullWidth {
+  grid-column-start: content-start;
+  grid-column-end: fullWidth-end;
+  display: grid;
+  grid-template-columns: subgrid;
+}
+@media (max-width: 1000px) {
+  .content-fullWidth {
+    grid-column-end: content-end;
+  }
+}
+
 h1,
 h2,
 h3,
@@ -162,6 +174,10 @@ p {
 p.large {
   font-size: clamp(1rem, 3vw, 1.5rem);
   line-height: 1.33;
+}
+
+p:has(+ *) {
+  margin-block-end: 1.5rem;
 }
 
 .topcontactwrapper {
@@ -836,6 +852,10 @@ footer .menuList object.scale {
   color: var(--light-color);
 }
 
+section.txtImg {
+  margin-block: var(--section-gap);
+  padding-block: var(--section-gap);
+}
 section.txtImg .content {
   display: grid;
   gap: 2rem;
@@ -856,6 +876,100 @@ section.txtImg .content .imgWrapper img {
   object-position: center;
   height: 100%;
   width: 100%;
+}
+
+.timelineGrid {
+  display: grid;
+  position: relative;
+}
+@media (min-width: 1200px) {
+  .timelineGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.timelineGrid .event {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr;
+  column-gap: 1rem;
+}
+.timelineGrid .event .eventContent {
+  padding-bottom: 1rem;
+}
+.timelineGrid .event h2.heading {
+  font-size: clamp(1.125rem, 5vw, 2rem);
+  color: #04ade6;
+}
+.timelineGrid .event .label {
+  font-weight: 700;
+  color: #2a2a2a;
+}
+.timelineGrid .event ul {
+  color: #3d3d3d;
+}
+.timelineGrid .event ul li {
+  margin-inline-start: 1.5rem;
+}
+.timelineGrid .event .icons {
+  position: relative;
+}
+.timelineGrid .event .icons .circleLg {
+  border: 4px solid #2a2a2a;
+  background-color: #fff;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  width: 25px;
+  position: relative;
+  margin-block-start: 0.25rem;
+}
+.timelineGrid .event .icons .circleLg::after {
+  position: absolute;
+  width: 50%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: #2a2a2a;
+  top: 52%;
+  left: 52%;
+  transform: translate(-50%, -50%);
+  justify-self: center;
+  align-self: center;
+  content: "";
+}
+.timelineGrid .event .icons .lineVertical {
+  height: 100%;
+  width: 4px;
+  background-color: #2a2a2a;
+  position: absolute;
+  inset-inline-start: 11px;
+  margin-top: -25px;
+  z-index: -1;
+}
+.timelineGrid .event .icons .lineHorizontal {
+  height: 2px;
+  width: 100%;
+  background-color: rgba(34, 34, 34, 0.5019607843);
+  position: absolute;
+  inset-inline-end: 4px;
+  inset-inline-start: 6px;
+  inset-block-start: 14.5px;
+  z-index: -1;
+}
+.timelineGrid .event:last-child .icons .lineVertical {
+  background-color: transparent;
+}
+@media (max-width: 1200px) {
+  .timelineGrid .watermark {
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+  .timelineGrid .watermark img {
+    position: absolute;
+    height: auto;
+    width: 100%;
+    object-fit: scale-down;
+  }
 }
 
 /*# sourceMappingURL=style2.css.map */
