@@ -807,4 +807,55 @@ footer .menuList object.scale {
   padding-inline: 1rem;
 }
 
+.bannerSm {
+  min-height: max(30vh, 400px);
+  position: relative;
+  display: flex;
+}
+.bannerSm::before {
+  content: "";
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%);
+  background-color: rgba(4, 173, 230, 0.5019607843);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+.bannerSm img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  height: 100%;
+  width: 100%;
+  z-index: -2;
+}
+.bannerSm .txtWrapper {
+  width: 100%;
+  margin-block: auto;
+  color: var(--light-color);
+}
+
+section.txtImg .content {
+  display: grid;
+  gap: 2rem;
+}
+@media (min-width: 62.5rem) {
+  section.txtImg .content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+section.txtImg .content .imgWrapper {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+section.txtImg .content .imgWrapper img {
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  height: 100%;
+  width: 100%;
+}
+
 /*# sourceMappingURL=style2.css.map */

@@ -1,4 +1,4 @@
-@import "fonts";
+@import 'fonts';
 
 :root {
   --primary-color: #04ade6;
@@ -10,7 +10,7 @@
   --overlay-light-color: #ebfaffe5;
   --light-color: #fff;
   --section-gap: clamp(2rem, 10vw, 5rem);
-  font-family: "Istok Web";
+  font-family: 'Istok Web';
   color: var(--text-dark-color);
 }
 
@@ -28,6 +28,8 @@
 
 .fullWidth {
   grid-column: fullWidth;
+  // grid-column-start: fullWidth-start;
+  // grid-column-end: content-end;
 }
 .breakout {
   grid-column: breakout;
@@ -149,7 +151,7 @@ button,
     background-color: color-mix(in srgb, var(--primary-color), white 60%);
     position: relative;
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       height: var(--_progBarAfterHeight);
       margin-top: calc(var(--_progBarHeight) - var(--_progBarAfterHeight));
@@ -172,7 +174,7 @@ h5.dash {
     --_color: var(--light-color);
   }
   &::before {
-    content: "";
+    content: '';
     background-color: var(--_color);
     position: absolute;
     height: 3px;
@@ -198,7 +200,7 @@ button:has(> .arrow) {
   }
   .arrow {
     &::after {
-      content: ">";
+      content: '>';
       font-size: 1.5rem;
       position: absolute;
       inset-inline-end: 1rem;
@@ -211,7 +213,7 @@ button:has(> .arrow) {
     }
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       height: 2px;
       width: 0rem; // Start with no width
@@ -423,7 +425,7 @@ section.initiative {
   padding-block: var(--section-gap);
   color: var(--text-dark-color);
   p {
-    font-family: "Istok Web";
+    font-family: 'Istok Web';
   }
   & > div {
     display: grid;
@@ -733,5 +735,59 @@ footer {
     font-family: Kanit;
     font-size: 1rem;
     padding-inline: 1rem;
+  }
+}
+
+.bannerSm {
+  min-height: max(30vh, 400px);
+  position: relative;
+  display: flex;
+  &::before {
+    content: '';
+    background-image: linear-gradient(to bottom, #00000066 0%, #00000066 100%);
+    background-color: #04ade680;
+    // background-blend-mode: overlay;
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+  img {
+    position: absolute;
+    inset: 0;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    height: 100%;
+    width: 100%;
+    z-index: -2;
+  }
+  .txtWrapper {
+    width: 100%;
+    margin-block: auto;
+    color: var(--light-color);
+  }
+}
+
+section.txtImg {
+  .content {
+    display: grid;
+    gap: 2rem;
+    @media (min-width: calc(1000rem / 16)) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .imgWrapper {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      img {
+        // position: absolute;
+        // inset: 0;
+        display: block;
+        object-fit: cover;
+        object-position: center;
+        height: 100%;
+        width: 100%;
+      }
+    }
   }
 }
