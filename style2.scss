@@ -1,4 +1,4 @@
-@import "fonts";
+@import 'fonts';
 
 :root {
   --primary-color: #04ade6;
@@ -10,7 +10,7 @@
   --overlay-light-color: #ebfaffe5;
   --light-color: #fff;
   --section-gap: clamp(2rem, 10vw, 5rem);
-  font-family: "Istok Web";
+  font-family: 'Istok Web';
   color: var(--text-dark-color);
 }
 
@@ -163,7 +163,7 @@ button,
     background-color: color-mix(in srgb, var(--primary-color), white 60%);
     position: relative;
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       height: var(--_progBarAfterHeight);
       margin-top: calc(var(--_progBarHeight) - var(--_progBarAfterHeight));
@@ -186,7 +186,7 @@ h5.dash {
     --_color: var(--light-color);
   }
   &::before {
-    content: "";
+    content: '';
     background-color: var(--_color);
     position: absolute;
     height: 3px;
@@ -212,7 +212,7 @@ button:has(> .arrow) {
   }
   .arrow {
     &::after {
-      content: ">";
+      content: '>';
       font-size: 1.5rem;
       position: absolute;
       inset-inline-end: 1rem;
@@ -225,7 +225,7 @@ button:has(> .arrow) {
     }
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       height: 2px;
       width: 0rem; // Start with no width
@@ -437,7 +437,7 @@ section.initiative {
   padding-block: var(--section-gap);
   color: var(--text-dark-color);
   p {
-    font-family: "Istok Web";
+    font-family: 'Istok Web';
   }
   & > div {
     display: grid;
@@ -654,6 +654,14 @@ section.blogs {
       }
     }
   }
+  &.blogsNormal .contentWrapper .grid-item {
+    @media (min-width: calc(700rem / 16)) {
+      grid-column: span 4;
+      &:nth-child(-n + 2) {
+        grid-column: span 4;
+      }
+    }
+  }
 }
 
 footer {
@@ -755,7 +763,7 @@ footer {
   position: relative;
   display: flex;
   &::before {
-    content: "";
+    content: '';
     background-image: linear-gradient(to bottom, #00000066 0%, #00000066 100%);
     background-color: #04ade680;
     // background-blend-mode: overlay;
@@ -856,7 +864,7 @@ section.txtImg {
           transform: translate(-50%, -50%);
           justify-self: center;
           align-self: center;
-          content: "";
+          content: '';
         }
       }
       .lineVertical {
@@ -899,6 +907,254 @@ section.txtImg {
         width: 100%;
         object-fit: scale-down;
       }
+    }
+  }
+}
+
+section.team {
+  margin-block: var(--section-gap);
+  .top {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+    margin-block-end: 2rem;
+    .tabs {
+      display: flex;
+      button {
+        background-color: #ebfaff;
+        color: #525658;
+        text-transform: uppercase;
+        font-weight: 300;
+        &.active {
+          background-color: #04ade6;
+          color: white;
+        }
+      }
+    }
+  }
+  .bottom {
+    .tabGrid {
+      display: none;
+      &.active {
+        display: grid;
+      }
+    }
+    .tabGrid#currentTeam {
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 400px));
+      @media (max-width: 350px) {
+        grid-template-columns: 1fr;
+      }
+      .grid-item {
+        display: flex;
+        flex-direction: column;
+        .imgWrapper {
+          width: 100%;
+          aspect-ratio: 1;
+          overflow: hidden;
+          background-color: #ebfaff;
+          img {
+            width: 100%;
+            height: auto;
+            display: block;
+          }
+        }
+        .txtWrapper {
+          margin-block-start: 1rem;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          .left {
+            display: grid;
+            gap: 0.5rem;
+            max-width: max-content;
+            .name {
+              font-family: Kanit;
+              font-size: 1.5rem;
+              font-weight: 700;
+              line-height: 1.495;
+              text-transform: capitalize;
+            }
+            .post {
+              color: #04ade6;
+              font-family: Istok Web;
+              font-size: 1rem;
+              font-weight: 400;
+              line-height: 1.4;
+              text-transform: capitalize;
+            }
+          }
+          .right {
+            align-content: center;
+            img {
+              filter: brightness(0) saturate(100%) invert(8%) sepia(0%)
+                saturate(305%) hue-rotate(183deg) brightness(98%) contrast(79%);
+            }
+            a {
+              text-decoration: none;
+              color: inherit;
+            }
+          }
+        }
+      }
+    }
+    .tabGrid#pastTeam {
+      gap: 1.5rem;
+      @media (min-width: 1000px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .grid-item {
+        background-color: #ebfaff;
+        padding: 2rem;
+        .title {
+          font-family: Kanit;
+          font-size: 1.5rem;
+          font-weight: 600;
+          line-height: 1.495;
+          margin-block-end: 1rem;
+          display: block;
+        }
+        ul {
+          list-style-position: inside;
+        }
+      }
+    }
+  }
+}
+
+ul.fireList {
+  // Assumes --fireUrl is set on html to the bullet image url. Ex: --fireUrl: url("sth")
+  list-style: none;
+  li {
+    margin-inline-start: 2rem;
+    position: relative;
+    &::before {
+      content: '';
+      background-image: var(--fireUrl);
+      background-size: contain;
+      height: 1.5rem;
+      width: 1rem;
+      left: -1.5rem;
+      display: block;
+      position: absolute;
+      background-repeat: no-repeat;
+    }
+    &:not(:first-child, :last-child) {
+      margin-block: 1rem;
+    }
+  }
+}
+
+section.papers {
+  margin-block: var(--section-gap);
+  .paperGrid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    @media (max-width: 300px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  .grid-item {
+    display: grid;
+    max-width: 500px;
+    a {
+      display: contents;
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+  .imgWrapper {
+    height: 100%;
+    width: 100%;
+    aspect-ratio: 0.66666666666666666667;
+    position: relative;
+    img {
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+      display: block;
+      position: absolute;
+      inset: 0;
+    }
+  }
+  .title {
+    font-family: Kanit;
+    font-size: clamp(calc(18rem / 16), 5vw, calc(24rem / 16));
+    font-weight: 700;
+    line-height: 1;
+    margin-block-start: 1rem;
+  }
+}
+
+section.contact {
+  margin-block: var(--section-gap);
+  .contactGrid {
+    display: grid;
+    gap: 2rem;
+    @media (min-width: 1000px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  h2 {
+    font-size: clamp(calc(18rem / 16), 5vw, calc(24rem / 16));
+  }
+  .socials img {
+    filter: brightness(0) contrast(100%) invert(19%) sepia(0%) saturate(38%)
+      hue-rotate(135deg) brightness(102%) contrast(85%);
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+  .iconList {
+    margin-block: 1rem;
+  }
+  .form form {
+    display: grid;
+    gap: 1rem;
+    :is(input, textarea) {
+      background-color: #ebfaff;
+      border: none;
+      padding: calc(12rem / 16) 1rem;
+      &:not(:placeholder-shown) {
+        &:user-valid {
+          outline: 1px solid rgb(0, 150, 0);
+        }
+        &:user-invalid {
+          outline: 1px solid rgb(150, 0, 0);
+        }
+      }
+    }
+    button {
+      background-color: #04ade6;
+      color: white;
+      padding: 1rem 2.5rem;
+      justify-self: end;
+    }
+  }
+}
+
+ul.iconList {
+  list-style: none;
+  li {
+    // Assumes --iconUrl is set on html to the bullet image url. Ex: --iconUrl: url("sth")
+    margin-inline-start: 2rem;
+    position: relative;
+    &::before {
+      content: '';
+      background-image: var(--iconUrl);
+      background-size: contain;
+      height: 1.5rem;
+      width: 1.5rem;
+      left: -2rem;
+      display: block;
+      position: absolute;
+      background-repeat: no-repeat;
+      filter: brightness(0) contrast(100%) invert(19%) sepia(0%) saturate(38%)
+        hue-rotate(135deg) brightness(102%) contrast(85%);
+    }
+    &:not(:first-child, :last-child) {
+      margin-block: 0.75rem;
     }
   }
 }

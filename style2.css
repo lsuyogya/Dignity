@@ -728,6 +728,14 @@ section.blogs .contentWrapper .grid-item p {
     grid-column: span 6;
   }
 }
+@media (min-width: 43.75rem) {
+  section.blogs.blogsNormal .contentWrapper .grid-item {
+    grid-column: span 4;
+  }
+  section.blogs.blogsNormal .contentWrapper .grid-item:nth-child(-n+2) {
+    grid-column: span 4;
+  }
+}
 
 footer {
   color: var(--light-color);
@@ -970,6 +978,253 @@ section.txtImg .content .imgWrapper img {
     width: 100%;
     object-fit: scale-down;
   }
+}
+
+section.team {
+  margin-block: var(--section-gap);
+}
+section.team .top {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+  margin-block-end: 2rem;
+}
+section.team .top .tabs {
+  display: flex;
+}
+section.team .top .tabs button {
+  background-color: #ebfaff;
+  color: #525658;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+section.team .top .tabs button.active {
+  background-color: #04ade6;
+  color: white;
+}
+section.team .bottom .tabGrid {
+  display: none;
+}
+section.team .bottom .tabGrid.active {
+  display: grid;
+}
+section.team .bottom .tabGrid#currentTeam {
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 400px));
+}
+@media (max-width: 350px) {
+  section.team .bottom .tabGrid#currentTeam {
+    grid-template-columns: 1fr;
+  }
+}
+section.team .bottom .tabGrid#currentTeam .grid-item {
+  display: flex;
+  flex-direction: column;
+}
+section.team .bottom .tabGrid#currentTeam .grid-item .imgWrapper {
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background-color: #ebfaff;
+}
+section.team .bottom .tabGrid#currentTeam .grid-item .imgWrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+section.team .bottom .tabGrid#currentTeam .grid-item .txtWrapper {
+  margin-block-start: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+section.team .bottom .tabGrid#currentTeam .grid-item .txtWrapper .left {
+  display: grid;
+  gap: 0.5rem;
+  max-width: max-content;
+}
+section.team .bottom .tabGrid#currentTeam .grid-item .txtWrapper .left .name {
+  font-family: Kanit;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.495;
+  text-transform: capitalize;
+}
+section.team .bottom .tabGrid#currentTeam .grid-item .txtWrapper .left .post {
+  color: #04ade6;
+  font-family: Istok Web;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.4;
+  text-transform: capitalize;
+}
+section.team .bottom .tabGrid#currentTeam .grid-item .txtWrapper .right {
+  align-content: center;
+}
+section.team .bottom .tabGrid#currentTeam .grid-item .txtWrapper .right img {
+  filter: brightness(0) saturate(100%) invert(8%) sepia(0%) saturate(305%) hue-rotate(183deg) brightness(98%) contrast(79%);
+}
+section.team .bottom .tabGrid#currentTeam .grid-item .txtWrapper .right a {
+  text-decoration: none;
+  color: inherit;
+}
+section.team .bottom .tabGrid#pastTeam {
+  gap: 1.5rem;
+}
+@media (min-width: 1000px) {
+  section.team .bottom .tabGrid#pastTeam {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+section.team .bottom .tabGrid#pastTeam .grid-item {
+  background-color: #ebfaff;
+  padding: 2rem;
+}
+section.team .bottom .tabGrid#pastTeam .grid-item .title {
+  font-family: Kanit;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.495;
+  margin-block-end: 1rem;
+  display: block;
+}
+section.team .bottom .tabGrid#pastTeam .grid-item ul {
+  list-style-position: inside;
+}
+
+ul.fireList {
+  list-style: none;
+}
+ul.fireList li {
+  margin-inline-start: 2rem;
+  position: relative;
+}
+ul.fireList li::before {
+  content: "";
+  background-image: var(--fireUrl);
+  background-size: contain;
+  height: 1.5rem;
+  width: 1rem;
+  left: -1.5rem;
+  display: block;
+  position: absolute;
+  background-repeat: no-repeat;
+}
+ul.fireList li:not(:first-child, :last-child) {
+  margin-block: 1rem;
+}
+
+section.papers {
+  margin-block: var(--section-gap);
+}
+section.papers .paperGrid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+@media (max-width: 300px) {
+  section.papers .paperGrid {
+    grid-template-columns: 1fr;
+  }
+}
+section.papers .grid-item {
+  display: grid;
+  max-width: 500px;
+}
+section.papers .grid-item a {
+  display: contents;
+  color: inherit;
+  text-decoration: none;
+}
+section.papers .imgWrapper {
+  height: 100%;
+  width: 100%;
+  aspect-ratio: 0.6666666667;
+  position: relative;
+}
+section.papers .imgWrapper img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+section.papers .title {
+  font-family: Kanit;
+  font-size: clamp(1.125rem, 5vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1;
+  margin-block-start: 1rem;
+}
+
+section.contact {
+  margin-block: var(--section-gap);
+}
+section.contact .contactGrid {
+  display: grid;
+  gap: 2rem;
+}
+@media (min-width: 1000px) {
+  section.contact .contactGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+section.contact h2 {
+  font-size: clamp(1.125rem, 5vw, 1.5rem);
+}
+section.contact .socials img {
+  filter: brightness(0) contrast(100%) invert(19%) sepia(0%) saturate(38%) hue-rotate(135deg) brightness(102%) contrast(85%);
+  height: 1.5rem;
+  width: 1.5rem;
+}
+section.contact .iconList {
+  margin-block: 1rem;
+}
+section.contact .form form {
+  display: grid;
+  gap: 1rem;
+}
+section.contact .form form :is(input, textarea) {
+  background-color: #ebfaff;
+  border: none;
+  padding: 0.75rem 1rem;
+}
+section.contact .form form :is(input, textarea):not(:placeholder-shown):user-valid {
+  outline: 1px solid rgb(0, 150, 0);
+}
+section.contact .form form :is(input, textarea):not(:placeholder-shown):user-invalid {
+  outline: 1px solid rgb(150, 0, 0);
+}
+section.contact .form form button {
+  background-color: #04ade6;
+  color: white;
+  padding: 1rem 2.5rem;
+  justify-self: end;
+}
+
+ul.iconList {
+  list-style: none;
+}
+ul.iconList li {
+  margin-inline-start: 2rem;
+  position: relative;
+}
+ul.iconList li::before {
+  content: "";
+  background-image: var(--iconUrl);
+  background-size: contain;
+  height: 1.5rem;
+  width: 1.5rem;
+  left: -2rem;
+  display: block;
+  position: absolute;
+  background-repeat: no-repeat;
+  filter: brightness(0) contrast(100%) invert(19%) sepia(0%) saturate(38%) hue-rotate(135deg) brightness(102%) contrast(85%);
+}
+ul.iconList li:not(:first-child, :last-child) {
+  margin-block: 0.75rem;
 }
 
 /*# sourceMappingURL=style2.css.map */
